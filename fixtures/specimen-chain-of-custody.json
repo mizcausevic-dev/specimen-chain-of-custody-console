@@ -1,0 +1,103 @@
+{
+  "snapshots": [
+    {
+      "id": "specimen-oncology-core",
+      "name": "Oncology biopsy intake cohort",
+      "scope": "SPECIMEN",
+      "riskStatus": "WATCH",
+      "snapshotStatus": "CURRENT",
+      "controlPath": "/specimens/oncology-biopsy/custody-posture",
+      "owner": "Clinical Lab Operations",
+      "specimenCount": 84,
+      "transferTouchpoints": 5,
+      "collectedAt": "2026-05-30T14:00:00Z"
+    },
+    {
+      "id": "specimen-regional-courier",
+      "name": "Regional courier handoff cohort",
+      "scope": "HANDOFF",
+      "riskStatus": "CRITICAL",
+      "snapshotStatus": "STALE",
+      "controlPath": "/specimens/regional-courier/custody-posture",
+      "owner": "Pathology Logistics",
+      "specimenCount": 41,
+      "transferTouchpoints": 6,
+      "collectedAt": "2026-05-27T09:20:00Z"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-barcode-relabel",
+      "snapshotId": "specimen-oncology-core",
+      "resourcePath": "oncology-biopsy / accession relabel lane",
+      "scope": "SPECIMEN",
+      "controlFamily": "Labeling",
+      "status": "DEGRADED",
+      "expectedState": "Barcode and accession labels remain aligned through intake and prep.",
+      "observedState": "Relabel event left one accession barcode mismatch unresolved.",
+      "gapWindowHours": 11,
+      "blocksApproval": true,
+      "note": "Relabel drift is still visible to bench operators."
+    },
+    {
+      "id": "gap-temperature-excursion",
+      "snapshotId": "specimen-regional-courier",
+      "resourcePath": "regional-courier / cold-chain tote 7",
+      "scope": "HANDOFF",
+      "controlFamily": "Temperature",
+      "status": "DEGRADED",
+      "expectedState": "Cold-chain tote remains inside excursion threshold until receipt scan.",
+      "observedState": "Temperature excursion persisted above threshold before receipt confirmation.",
+      "gapWindowHours": 19,
+      "blocksApproval": true
+    },
+    {
+      "id": "gap-custody-signoff",
+      "snapshotId": "specimen-regional-courier",
+      "resourcePath": "regional-courier / courier-to-lab transfer packet",
+      "scope": "HANDOFF",
+      "controlFamily": "Custody",
+      "status": "CHANGED",
+      "expectedState": "Courier and receiving lab both sign the transfer packet in the same review window.",
+      "observedState": "Receiving signature is missing from the custody packet.",
+      "gapWindowHours": 33,
+      "blocksApproval": true
+    },
+    {
+      "id": "gap-storage-release",
+      "snapshotId": "specimen-oncology-core",
+      "resourcePath": "oncology-biopsy / freezer shelf B12",
+      "scope": "STORAGE",
+      "controlFamily": "Storage",
+      "status": "DEGRADED",
+      "expectedState": "Storage location and release queue remain in sync after thaw approval.",
+      "observedState": "One specimen remains queued for release while still marked in freezer custody.",
+      "gapWindowHours": 16,
+      "blocksApproval": true
+    },
+    {
+      "id": "gap-consent-packet",
+      "snapshotId": "specimen-oncology-core",
+      "resourcePath": "oncology-biopsy / patient-consent attachment packet",
+      "scope": "LAB",
+      "controlFamily": "Consent",
+      "status": "CHANGED",
+      "expectedState": "Consent attachment remains current through secondary review.",
+      "observedState": "Consent packet is stale and missing the most recent signed attachment.",
+      "gapWindowHours": 27,
+      "blocksApproval": false
+    },
+    {
+      "id": "gap-transport-seal",
+      "snapshotId": "specimen-regional-courier",
+      "resourcePath": "regional-courier / tamper-seal verification lane",
+      "scope": "HANDOFF",
+      "controlFamily": "Transport",
+      "status": "DEGRADED",
+      "expectedState": "Transport seal and courier scan remain intact through arrival.",
+      "observedState": "Seal verification was unscanned at the final courier checkpoint.",
+      "gapWindowHours": 22,
+      "blocksApproval": false
+    }
+  ]
+}
