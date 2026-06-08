@@ -186,6 +186,25 @@ export function renderOverview() {
           <div class="src"><div class="src-name">control evidence</div><div class="src-tit">Turn specimen snapshots into operator proof</div><p>Every lane stays tied to owner, control family, specimen path, and the next concrete remediation move.</p></div>
           <div class="src"><div class="src-name">recruiter signal</div><div class="src-tit">Show real biotech logistics depth</div><p>This is real specimen custody and pathology logistics proof, not generic biotech marketing copy.</p></div>
         </div>
+      </section>
+      <section class="section">
+        <div class="sh"><h2>Board questions this answers</h2><div class="note">integrity · release · remediation</div></div>
+        <div class="stack">
+          <div class="src"><div class="src-name">exposure</div><div class="src-tit">Which specimen lanes could invalidate downstream release confidence?</div><p>Labeling, cold-chain, consent, storage, and courier handoff gaps stay visible before they become delayed release, retest, or audit findings.</p></div>
+          <div class="src"><div class="src-name">savings</div><div class="src-tit">Where is manual reconciliation slowing the lab?</div><p>The console collapses accession, logistics, QA, and release evidence into one custody packet instead of forcing each team to reconstruct status separately.</p></div>
+          <div class="src"><div class="src-name">investment</div><div class="src-tit">Which handoff should be instrumented next?</div><p>Blocking custody gaps show whether barcode validation, courier signoff, temperature monitoring, or consent-packet freshness deserves the next automation pass.</p></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="sh"><h2>Evidence model</h2><div class="note">signal · proof · decision</div></div>
+        <table class="ttbl">
+          <thead><tr><th>Signal</th><th>Owner</th><th>Required proof</th><th>Decision supported</th></tr></thead>
+          <tbody>
+            <tr><td><b>Accession integrity</b></td><td>Lab Intake</td><td>Label match, accession timestamp, receiving operator, variance note</td><td>Accept, quarantine, or rework intake packet</td></tr>
+            <tr><td><b>Cold-chain posture</b></td><td>Logistics QA</td><td>Temperature window, excursion note, courier handoff, QA disposition</td><td>Release, retest, or block specimen movement</td></tr>
+            <tr><td><b>Consent packet freshness</b></td><td>Clinical Quality</td><td>Consent artifact, collection context, review owner, release memo</td><td>Publish, hold, or request packet repair</td></tr>
+          </tbody>
+        </table>
       </section>`
   );
 }
