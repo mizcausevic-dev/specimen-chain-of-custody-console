@@ -85,6 +85,28 @@ function layout(title: string, active: string, body: string) {
       .kpi .h{font-size:12px; color:var(--muted); margin-top:8px}
       .stack,.board{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
       @media (max-width:1000px){.stack,.board{grid-template-columns:1fr}}
+      .depth-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:14px}
+      @media (max-width:1000px){.depth-grid{grid-template-columns:1fr}}
+      .depth-card{
+        position:relative; overflow:hidden; border-radius:18px; padding:20px 22px;
+        border:1px solid rgba(25,199,255,.22);
+        background:
+          linear-gradient(135deg, rgba(25,199,255,.11), transparent 34%),
+          linear-gradient(180deg, rgba(11,18,32,.92), rgba(8,14,26,.70));
+        box-shadow:0 18px 55px rgba(0,0,0,.34);
+      }
+      .depth-card:before{
+        content:""; position:absolute; inset:0 0 auto 0; height:2px;
+        background:linear-gradient(90deg,var(--bert),var(--bert2),var(--plum));
+      }
+      .depth-card .eyebrow{
+        font-family:var(--mono); font-size:10px; letter-spacing:.19em; text-transform:uppercase;
+        color:var(--bert2); margin-bottom:8px;
+      }
+      .depth-card h3{margin:0 0 10px; font-size:22px; line-height:1.15}
+      .depth-card p{margin:0 0 12px; color:var(--muted); line-height:1.6}
+      .depth-card ul{margin:0; padding-left:18px}
+      .depth-card li{color:var(--muted); line-height:1.55; padding:3px 0}
       .src,.pcard{border-radius:16px; padding:18px 20px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(11,18,32,.85), rgba(8,14,26,.65))}
       .src .src-name{font-family:var(--mono); font-size:11px; color:var(--bert); letter-spacing:.18em; text-transform:uppercase}
       .src .src-tit{margin:8px 0 6px; font-size:18px; font-weight:600}
@@ -146,7 +168,9 @@ function layout(title: string, active: string, body: string) {
       <div class="footer">
         <div>specimen-chain-of-custody-console · synthetic sample data only</div>
         <div class="footer-links">
-          <a class="meta-chip" href="https://github.com/mizcausevic-dev/">GitHub</a>
+          <a class="meta-chip" href="https://github.com/mizcausevic-dev/specimen-chain-of-custody-console">Repo</a>
+          <a class="meta-chip" href="https://portfolio.kineticgain.com/">Portfolio</a>
+          <a class="meta-chip" href="https://suite.kineticgain.com/">Suite</a>
           <a class="meta-chip" href="https://www.linkedin.com/in/mirzacausevic/">LinkedIn</a>
           <a class="meta-chip" href="https://kineticgain.com/">Kinetic Gain</a>
         </div>
@@ -161,6 +185,34 @@ function severityClass(value: string) {
   if (value === "medium" || value === "yellow") return "yellow";
   if (value === "green" || value === "low") return "green";
   return "info";
+}
+
+function productDepthSection() {
+  return `<section class="section">
+        <div class="sh"><h2>Product depth</h2><div class="note">go-to-market · value architecture · proof</div></div>
+        <div class="depth-grid">
+          <article class="depth-card">
+            <div class="eyebrow">What this product does</div>
+            <h3>Specimen Chain Of Custody Console turns lab handoffs into a release-safe evidence packet.</h3>
+            <p>It gives diagnostics, pathology logistics, quality, accession, courier, and storage teams one shared view of specimen integrity before handoff drift becomes a release blocker, audit finding, or retest cost.</p>
+            <ul>
+              <li><strong>For executives:</strong> shows where sample integrity risk is building and which release decisions need escalation.</li>
+              <li><strong>For operators:</strong> maps every custody gap to owner, control family, specimen path, and next remediation move.</li>
+              <li><strong>For technical reviewers:</strong> ships analyzer code, typed packets, JSON APIs, CLI output, synthetic fixtures, and static proof pages.</li>
+            </ul>
+          </article>
+          <article class="depth-card">
+            <div class="eyebrow">What these repos have in common</div>
+            <h3>A repeatable Kinetic Gain control-plane pattern, not isolated brochureware.</h3>
+            <p>Each repo packages a narrow operating problem as a buyer-readable product surface with evidence, data contracts, verification routes, screenshots, and deployment metadata.</p>
+            <ul>
+              <li>Named business lane with a board question, operating owner, and remediation motion.</li>
+              <li>Offline-safe sample data so the surface can prove value without exposing patient, specimen, customer, or credential data.</li>
+              <li>Public page, API routes, CLI or analyzer path, README, screenshots, and CI checks that support a real diligence trail.</li>
+            </ul>
+          </article>
+        </div>
+      </section>`;
 }
 
 export function renderOverview() {
@@ -187,6 +239,7 @@ export function renderOverview() {
           <div class="src"><div class="src-name">recruiter signal</div><div class="src-tit">Show real biotech logistics depth</div><p>This is real specimen custody and pathology logistics proof, not generic biotech marketing copy.</p></div>
         </div>
       </section>
+      ${productDepthSection()}
       <section class="section">
         <div class="sh"><h2>Board questions this answers</h2><div class="note">integrity · release · remediation</div></div>
         <div class="stack">

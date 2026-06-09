@@ -25,6 +25,36 @@ Operator control plane for biotech and diagnostics specimen custody, labeling in
   - `/api/verification`
   - `/api/sample`
 
+## Product depth
+
+Specimen Chain Of Custody Console turns lab handoffs into a release-safe evidence packet. The surface is aimed at diagnostics, pathology logistics, quality, accession, courier, and storage teams that need to know which specimen lanes are trustworthy, which packets require repair, and where release confidence is being weakened by avoidable custody drift.
+
+The product is intentionally readable by both business and technical reviewers:
+
+- executives get a short integrity, release, and remediation view for board-ready specimen operations decisions
+- lab and quality teams get owners, control families, specimen paths, blocker states, and next remediation moves
+- platform reviewers get typed analysis code, JSON APIs, CLI output, synthetic fixtures, screenshots, and CI verification
+
+## What these repos have in common
+
+This repo follows the Kinetic Gain control-plane pattern used across the portfolio: a narrow operating problem becomes a public product surface with evidence, data contracts, verification routes, and deployment metadata. The goal is not a thin landing page. The goal is a reusable proof artifact that can support diligence, sales discovery, product marketing, and technical review.
+
+Shared pattern:
+
+- named operating lane with a buyer-readable problem statement
+- synthetic sample data that proves the workflow without exposing patient, specimen, customer, credential, or production system data
+- analyzer or service code that produces the same posture the public page displays
+- README, screenshots, routes, APIs, CLI, and CI checks that make the repo inspectable
+- footer and metadata links that connect the surface back to the broader Kinetic Gain estate
+
+## Operating workflow
+
+1. Ingest a specimen-custody snapshot with accession, label, courier, temperature, consent, storage, and release signals.
+2. Normalize the snapshot into custody lanes, transfer gaps, and release-posture packets.
+3. Rank blockers by sample-integrity risk, release impact, and remediation urgency.
+4. Render the same evidence through CLI output, JSON APIs, static pages, README screenshots, and verification copy.
+5. Keep the live surface offline-safe and synthetic so it can be reviewed publicly without leaking specimen identifiers, patient information, or laboratory credentials.
+
 ## Screenshots
 
 ![Overview](./screenshots/01-overview-proof-v2.png)
